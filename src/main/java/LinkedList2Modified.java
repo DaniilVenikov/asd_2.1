@@ -3,30 +3,28 @@ import java.util.ArrayList;
 public class LinkedList2Modified
 {
     private DummyNode head;
-    private DummyNode tail;
 
     public LinkedList2Modified()
     {
         head = new DummyNode();
-        tail = new DummyNode();
-        head.next = tail;
-        tail.prev = head;
+        head.next = head;
+        head.prev = head;
     }
 
     public Node getHead() {
-        return head.next == tail ? null : head.next;
+        return head.next == head ? null : head.next;
     }
 
     public Node getTail() {
-        return tail.prev == head ? null : tail.prev;
+        return head.prev == head ? null : head.prev;
     }
 
     public void addInTail(Node _item)
     {
-        _item.next = tail;
-        _item.prev = tail.prev;
-        tail.prev.next = _item;
-        tail.prev = _item;
+        _item.next = head;
+        _item.prev = head.prev;
+        head.prev.next = _item;
+        head.prev = _item;
     }
 
     public Node find(int _value)
@@ -74,8 +72,8 @@ public class LinkedList2Modified
 
     public void clear()
     {
-        head.next = tail;
-        tail.prev = head;
+        head.next = head;
+        head.prev = head;
     }
 
     public int count()
