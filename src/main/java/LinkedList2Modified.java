@@ -2,20 +2,15 @@ import java.util.ArrayList;
 
 public class LinkedList2Modified
 {
-    private Node head;
-    private Node tail;
+    private DummyNode head;
+    private DummyNode tail;
 
     public LinkedList2Modified()
     {
-        Node dummyHeadNode = new Node(-1);
-        dummyHeadNode.switchDummy();
-        Node dummyTailNode = new Node(-1);
-        dummyTailNode.switchDummy();
-
-        head = dummyHeadNode;
-        tail = dummyTailNode;
-        head.next = dummyTailNode;
-        tail.prev = dummyHeadNode;
+        head = new DummyNode();
+        tail = new DummyNode();
+        head.next = tail;
+        tail.prev = head;
     }
 
     public Node getHead() {
@@ -36,7 +31,7 @@ public class LinkedList2Modified
 
     public Node find(int _value)
     {
-        for (Node node = head.next; node != null && !node.dummy; node = node.next) {
+        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
             if (node.value == _value) {
                 return node;
             }
@@ -47,7 +42,7 @@ public class LinkedList2Modified
     public ArrayList<Node> findAll(int _value)
     {
         ArrayList<Node> nodes = new ArrayList<Node>();
-        for (Node node = head.next; node != null && !node.dummy; node = node.next) {
+        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
             if (node.value == _value)
                 nodes.add(node);
         }
@@ -56,7 +51,7 @@ public class LinkedList2Modified
 
     public boolean remove(int _value)
     {
-        for (Node node = head.next; node != null && !node.dummy; node = node.next) {
+        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
             if (node.value == _value) {
                 node.prev.next = node.next;
                 node.next.prev = node.prev;
@@ -69,7 +64,7 @@ public class LinkedList2Modified
 
     public void removeAll(int _value)
     {
-        for (Node node = head.next; node != null && !node.dummy; node = node.next) {
+        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
             if (node.value == _value) {
                 node.prev.next = node.next;
                 node.next.prev = node.prev;
@@ -86,7 +81,7 @@ public class LinkedList2Modified
     public int count()
     {
         int count = 0;
-        for (Node node = head.next; node != null && !node.dummy; node = node.next) {
+        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
             count++;
         }
         return count;
@@ -105,7 +100,7 @@ public class LinkedList2Modified
             return;
         }
 
-        for (Node node = head.next; node != null && !node.dummy; node = node.next) {
+        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
             if (node == _nodeAfter) {
                 _nodeToInsert.next = node.next;
                 _nodeToInsert.prev = node;
@@ -123,7 +118,6 @@ class Node
     public int value;
     public Node next;
     public Node prev;
-    public boolean dummy;
 
     public Node(int _value)
     {
@@ -131,10 +125,11 @@ class Node
         next = null;
         prev = null;
     }
+}
 
-    public void switchDummy() {
-        this.dummy = true;
+class DummyNode extends Node {
+    public DummyNode() {
+        super(-1);
     }
-
 }
 
