@@ -2,21 +2,13 @@ import java.util.ArrayList;
 
 public class LinkedList2Modified
 {
-    private DummyNode head;
+    public DummyNode head;
 
     public LinkedList2Modified()
     {
         head = new DummyNode();
         head.next = head;
         head.prev = head;
-    }
-
-    public Node getHead() {
-        return head.next;
-    }
-
-    public Node getTail() {
-        return head.prev;
     }
 
     public void addInTail(Node _item)
