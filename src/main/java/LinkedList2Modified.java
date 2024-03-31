@@ -29,7 +29,7 @@ public class LinkedList2Modified
 
     public Node find(int _value)
     {
-        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
+        for (Node node = head.next; node != null && !(node instanceof DummyNode); node = node.next) {
             if (node.value == _value) {
                 return node;
             }
@@ -40,7 +40,7 @@ public class LinkedList2Modified
     public ArrayList<Node> findAll(int _value)
     {
         ArrayList<Node> nodes = new ArrayList<Node>();
-        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
+        for (Node node = head.next; node != null && !(node instanceof DummyNode); node = node.next) {
             if (node.value == _value)
                 nodes.add(node);
         }
@@ -49,7 +49,7 @@ public class LinkedList2Modified
 
     public boolean remove(int _value)
     {
-        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
+        for (Node node = head.next; node != null && !(node instanceof DummyNode); node = node.next) {
             if (node.value == _value) {
                 node.prev.next = node.next;
                 node.next.prev = node.prev;
@@ -62,7 +62,7 @@ public class LinkedList2Modified
 
     public void removeAll(int _value)
     {
-        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
+        for (Node node = head.next; node != null && !(node instanceof DummyNode); node = node.next) {
             if (node.value == _value) {
                 node.prev.next = node.next;
                 node.next.prev = node.prev;
@@ -79,7 +79,7 @@ public class LinkedList2Modified
     public int count()
     {
         int count = 0;
-        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
+        for (Node node = head.next; node != null && !(node instanceof DummyNode); node = node.next) {
             count++;
         }
         return count;
@@ -98,7 +98,7 @@ public class LinkedList2Modified
             return;
         }
 
-        for (Node node = head.next; node != null && node.getClass() != DummyNode.class; node = node.next) {
+        for (Node node = head.next; node != null && !(node instanceof DummyNode); node = node.next) {
             if (node == _nodeAfter) {
                 _nodeToInsert.next = node.next;
                 _nodeToInsert.prev = node;
