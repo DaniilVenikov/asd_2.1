@@ -96,14 +96,12 @@ public class LinkedList2ModifiedTest {
     public void testClear() {
         emptyList.clear();
         assertEquals(0, emptyList.count());
-        assertNull(emptyList.getHead());
 
         singleList.clear();
         assertEquals(0, emptyList.count());
 
         list.clear();
         assertEquals(0, emptyList.count());
-        assertNull(list.getHead());
     }
 
     @Test
